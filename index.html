@@ -393,7 +393,7 @@
 
                         <div class="form-group">
                             <label for="tenantPhone">
-                                Phone Number <span class="required">*</span>
+                                Phone Number 
                             </label>
                             <input type="tel" id="tenantPhone" name="tenantPhone" maxlength="15" placeholder="(876) 555-1234">
                         </div>
@@ -524,7 +524,6 @@
                         <div class="receipt-row">
                             <div class="receipt-label">Received From:</div>
                             <div class="receipt-value" id="displayTenantName">John Doe</div>
-                        </div>
                         <div class="receipt-row">
                             <div class="receipt-label">Property Address:</div>
                             <div class="receipt-value" id="displayPropertyAddress">123 Main Street</div>
@@ -579,13 +578,15 @@
                 receiptNumber: document.getElementById('receiptNumber').value,
                 receiptDate: document.getElementById('receiptDate').value,
                 tenantName: document.getElementById('tenantName').value,
+                landlordName: document.getElementById('landlordName').value,
                 propertyAddress: document.getElementById('propertyAddress').value,
                 rentPeriod: document.getElementById('rentPeriod').value,
                 rentAmount: parseFloat(document.getElementById('rentAmount').value),
                 paymentMethod: document.getElementById('paymentMethod').value,
                 paymentDate: document.getElementById('paymentDate').value,
                 transactionRef: document.getElementById('transactionRef').value,
-                notes: document.getElementById('notes').value
+                notes: document.getElementById('notes').value,
+                signature: document.getElementById('signature').value
             };
 
             // Update receipt
@@ -597,6 +598,7 @@
             document.getElementById('displayPaymentMethod').textContent = formData.paymentMethod;
             document.getElementById('displayPaymentDate').textContent = formatDate(formData.paymentDate);
             document.getElementById('displayRentAmount').textContent = `JMD $${formData.rentAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('displaySignature').textContent = formData.signature;
 
             // Handle optional fields
             if (formData.transactionRef) {
@@ -632,6 +634,42 @@
         function formatDate(dateString) {
             const date = new Date(dateString);
             return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+
+        // Print receipt
+        function printReceipt() {
+            alert('Print Receipt');
+            window.print();
+        }
+
+        // Download receipt as PDF (using print to PDF)
+        function downloadReceipt() {
+            alert('Download Receipt');
+            // Create a friendly filename
+            const receiptNum = document.getElementById('receiptNumber').value || 'receipt';
+            const date = document.getElementById('receiptDate').value || '';
+            document.title = `Rent_Receipt_${receiptNum}_${date}`;
+            
+            // Trigger print dialog (user can select "Save as PDF")
+            window.print();
+        }
+
+        // Email receipt
+        function emailReceipt() {
+            alert('Email Receipt');
+            const tenantEmail = document.getElementById('tenantEmail').value;
+            const receiptNumber = document.getElementById('receiptNumber').value;
+            const tenantName = document.getElementById('tenantName').value;
+            
+            // Create email with receipt details
+            const subject = `Rent Receipt - ${receiptNumber}`;
+            const body = `Dear ${tenantName},\n\nPlease find your rent receipt attached.\n\nReceipt Number: ${receiptNumber}\n\nThank you for your payment.\n\nBest regards`;
+            
+            if (tenantEmail) {
+                window.location.href = `mailto:${tenantEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            } else {
+                window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            }
         }
     </script>
 </body>
