@@ -404,6 +404,7 @@
                             </label>
                             <input type="text" id="landlordName" name="landlordName" required maxlength="100" placeholder="Jane Smith">
                         </div>
+                    </div>
 
                     <h2 class="section-title">
                         <span class="material-icons">home</span>
@@ -650,42 +651,6 @@
         function formatDate(dateString) {
             const date = new Date(dateString);
             return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-        }
-
-        // Print receipt
-        function printReceipt() {
-            alert('Print Receipt');
-            window.print();
-        }
-
-        // Download receipt as PDF (using print to PDF)
-        function downloadReceipt() {
-            alert('Download Receipt');
-            // Create a friendly filename
-            const receiptNum = document.getElementById('receiptNumber').value || 'receipt';
-            const date = document.getElementById('receiptDate').value || '';
-            document.title = `Rent_Receipt_${receiptNum}_${date}`;
-            
-            // Trigger print dialog (user can select "Save as PDF")
-            window.print();
-        }
-
-        // Email receipt
-        function emailReceipt() {
-            alert('Email Receipt');
-            const tenantEmail = document.getElementById('tenantEmail').value;
-            const receiptNumber = document.getElementById('receiptNumber').value;
-            const tenantName = document.getElementById('tenantName').value;
-            
-            // Create email with receipt details
-            const subject = `Rent Receipt - ${receiptNumber}`;
-            const body = `Dear ${tenantName},\n\nPlease find your rent receipt attached.\n\nReceipt Number: ${receiptNumber}\n\nThank you for your payment.\n\nBest regards`;
-            
-            if (tenantEmail) {
-                window.location.href = `mailto:${tenantEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            } else {
-                window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            }
         }
     </script>
 </body>
