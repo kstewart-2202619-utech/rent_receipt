@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent Receipt Generator</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Rent Receipt Generator</h1>
+            <p>Create professional rent receipts instantly</p>
+        </header>
+
+        <main>
+            <div class="content-wrapper">
+                <!-- Left Side: Form -->
+                <section class="form-section">
+                    <h2>Enter Receipt Details</h2>
+
+                    <form id="receiptForm">
+                        <!-- Receipt Information -->
+                        <div class="form-group">
+                            <label for="receiptNumber">Receipt Number <span class="required">*</span></label>
+                            <input type="text" id="receiptNumber" name="receiptNumber" required maxlength="20" placeholder="e.g., RR-2025-001">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="receiptDate">Receipt Date <span class="required">*</span></label>
+                            <input type="date" id="receiptDate" name="receiptDate" required>
+                        </div>
+
+                        <!-- Tenant Information -->
+                        <div class="form-group">
+                            <label for="tenantName">Tenant Name <span class="required">*</span></label>
+                            <input type="text" id="tenantName" name="tenantName" required maxlength="100" placeholder="e.g., John Doe">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tenantEmail">Email Address:</label>
+                            <input type="email" id="tenantEmail" name="tenantEmail" maxlength="100" placeholder="tenant@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tenantPhone">Phone Number:</label>
+                            <input type="tel" id="tenantPhone" name="tenantPhone" maxlength="15" placeholder="(876) 555-1234">
+                        </div>
+
+                        <!-- Landlord Information -->
+                        <div class="form-group">
+                            <label for="landlordName">Landlord Name <span class="required">*</span></label>
+                            <input type="text" id="landlordName" name="landlordName" required maxlength="100" placeholder="e.g., Jane Smith">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="landlordPhone">Landlord Phone:</label>
+                            <input type="tel" id="landlordPhone" name="landlordPhone" maxlength="15" placeholder="(876) 555-5678">
+                        </div>
+
+                        <!-- Property Information -->
+                        <div class="form-group">
+                            <label for="propertyAddress">Property Address <span class="required">*</span></label>
+                            <textarea id="propertyAddress" name="propertyAddress" required maxlength="200" placeholder="123 Main Street, Apt 4B, Kingston"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rentPeriod">Rent Period <span class="required">*</span></label>
+                            <input type="text" id="rentPeriod" name="rentPeriod" required maxlength="50" placeholder="e.g., January 2025">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rentAmount">Rent Amount (JMD) <span class="required">*</span></label>
+                            <input type="number" id="rentAmount" name="rentAmount" required min="0" step="0.01" placeholder="e.g., 50000.00">
+                        </div>
+
+                        <!-- Payment Details -->
+                        <div class="form-group">
+                            <label for="paymentMethod">Payment Method <span class="required">*</span></label>
+                            <select id="paymentMethod" name="paymentMethod" required>
+                                <option value="">Select Payment Method</option>
+                                <option value="Cash">Cash</option>
+                                <option value="Check">Check</option>
+                                <option value="Bank Transfer">Bank Transfer</option>
+                                <option value="Online Payment">Online Payment</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="paymentDate">Payment Date <span class="required">*</span></label>
+                            <input type="date" id="paymentDate" name="paymentDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="transactionRef">Transaction Reference:</label>
+                            <input type="text" id="transactionRef" name="transactionRef" maxlength="50" placeholder="TRX123456">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="notes">Additional Notes:</label>
+                            <textarea id="notes" name="notes" maxlength="300" placeholder="Any additional information"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="signature">Signature (Type name):</label>
+                            <input type="text" id="signature" name="signature" maxlength="100" placeholder="Digital/Typed Signature">
+                        </div>
+
+                        <div class="button-group">
+                            <button type="submit" class="btn-primary">
+                                <span class="material-icons">receipt_long</span>
+                                Generate Receipt
+                            </button>
+                            <button type="reset" class="btn-secondary">
+                                <span class="material-icons">refresh</span>
+                                Clear All
+                            </button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Right Side: Receipt Display -->
+                <section class="receipt-section" id="receiptSection">
+                    <h2>Your Receipt</h2>
+
+                    <div class="receipt-actions">
+                        <button type="button" onclick="printReceipt()" class="btn-action">
+                            <span class="material-icons">print</span>
+                            Print
+                        </button>
+                        <button type="button" onclick="downloadReceipt()" class="btn-action">
+                            <span class="material-icons">download</span>
+                            Download
+                        </button>
+                        <button type="button" onclick="emailReceipt()" class="btn-action">
+                            <span class="material-icons">email</span>
+                            Email
+                        </button>
+                    </div>
+
+                    <div class="receipt" id="receipt">
+                        <div class="receipt-header">
+                            <h3>RENT RECEIPT</h3>
+                            <div class="receipt-meta">
+                                <p id="displayReceiptNumber">Receipt #: ---</p>
+                                <p id="displayReceiptDate">Date: ---</p>
+                            </div>
+                        </div>
+
+                        <div class="receipt-body">
+                            <div class="receipt-item">
+                                <span class="label">Received From:</span>
+                                <span class="value" id="displayTenantName">---</span>
+                            </div>
+
+                            <div class="receipt-item">
+                                <span class="label">Property Address:</span>
+                                <span class="value" id="displayPropertyAddress">---</span>
+                            </div>
+
+                            <div class="receipt-item">
+                                <span class="label">Rent Period:</span>
+                                <span class="value" id="displayRentPeriod">---</span>
+                            </div>
+
+                            <div class="receipt-item">
+                                <span class="label">Payment Method:</span>
+                                <span class="value" id="displayPaymentMethod">---</span>
+                            </div>
+
+                            <div class="receipt-item">
+                                <span class="label">Payment Date:</span>
+                                <span class="value" id="displayPaymentDate">---</span>
+                            </div>
+
+                            <div class="receipt-item" id="transactionRow" style="display: none;">
+                                <span class="label">Transaction Ref:</span>
+                                <span class="value" id="displayTransactionRef"></span>
+                            </div>
+
+                            <div class="receipt-item" id="notesRow" style="display: none;">
+                                <span class="label">Notes:</span>
+                                <span class="value" id="displayNotes"></span>
+                            </div>
+                        </div>
+
+                        <div class="receipt-amount">
+                            <div class="amount-label">Total Amount Paid</div>
+                            <div class="amount-value" id="displayRentAmount">JMD $0.00</div>
+                        </div>
+
+                        <div class="receipt-footer">
+                            <p class="thank-you">Thank you for your payment</p>
+                            <div class="signature-section">
+                                <div class="signature-line" id="displaySignature">___________________</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Rent Receipt Generator. For educational purposes only.</p>
+        </footer>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
