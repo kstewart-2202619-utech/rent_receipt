@@ -1,0 +1,492 @@
+/* ============================
+   GLOBAL STYLES
+   ============================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================
+   HEADER
+   ============================ */
+header {
+    text-align: center;
+    color: white;
+    margin-bottom: 40px;
+    animation: slideDown 0.8s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+header p {
+    font-size: 1.1rem;
+    font-weight: 300;
+    opacity: 0.95;
+}
+
+/* ============================
+   MAIN CONTENT WRAPPER
+   ============================ */
+main {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 600px;
+}
+
+/* ============================
+   FORM SECTION (LEFT SIDE)
+   ============================ */
+.form-section {
+    padding: 40px;
+    background: #f8f9fa;
+    border-right: 2px solid #e0e0e0;
+    overflow-y: auto;
+    max-height: 800px;
+}
+
+.form-section h2 {
+    font-size: 1.8rem;
+    color: #667eea;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.required {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    transform: translateY(-2px);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23667eea' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px;
+}
+
+/* ============================
+   BUTTONS
+   ============================ */
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+button {
+    padding: 14px 25px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    flex: 1;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: white;
+    color: #667eea;
+    border: 2px solid #667eea;
+    flex: 1;
+}
+
+.btn-secondary:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+.btn-action {
+    background: white;
+    color: #667eea;
+    border: 2px solid #667eea;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+}
+
+.btn-action:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ============================
+   RECEIPT SECTION (RIGHT SIDE)
+   ============================ */
+.receipt-section {
+    padding: 40px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: 800px;
+}
+
+.receipt-section h2 {
+    font-size: 1.8rem;
+    color: #667eea;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.receipt-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+/* ============================
+   RECEIPT DESIGN
+   ============================ */
+.receipt {
+    background: #ffffff;
+    border: 3px solid #333;
+    border-radius: 15px;
+    padding: 30px;
+    font-family: 'Special Elite', cursive;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    flex: 1;
+}
+
+.receipt-header {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 3px double #333;
+    margin-bottom: 25px;
+}
+
+.receipt-header h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.receipt-meta {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.receipt-meta p {
+    margin: 5px 0;
+}
+
+/* ============================
+   RECEIPT BODY
+   ============================ */
+.receipt-body {
+    margin: 25px 0;
+}
+
+.receipt-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px dashed #ccc;
+}
+
+.receipt-item .label {
+    font-weight: bold;
+    color: #333;
+    flex: 0 0 45%;
+}
+
+.receipt-item .value {
+    color: #000;
+    text-align: right;
+    flex: 1;
+}
+
+/* ============================
+   RECEIPT AMOUNT
+   ============================ */
+.receipt-amount {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 25px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 25px 0;
+}
+
+.amount-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: 8px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.amount-value {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* ============================
+   RECEIPT FOOTER
+   ============================ */
+.receipt-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 3px double #333;
+    text-align: center;
+}
+
+.thank-you {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    font-family: 'Poppins', sans-serif;
+    color: #555;
+}
+
+.signature-section {
+    margin-top: 40px;
+}
+
+.signature-line {
+    border-top: 2px solid #333;
+    display: inline-block;
+    min-width: 250px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.signature-name {
+    font-size: 0.95rem;
+    color: #333;
+    margin-top: 5px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.signature-phone {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 3px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ============================
+   FOOTER
+   ============================ */
+footer {
+    text-align: center;
+    color: white;
+    padding: 20px;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* ============================
+   PRINT STYLES
+   ============================ */
+@media print {
+    body {
+        background: white;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    header,
+    footer,
+    .form-section,
+    .receipt-actions {
+        display: none !important;
+    }
+
+    .content-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .receipt-section {
+        padding: 20px;
+        max-height: none;
+    }
+
+    .receipt {
+        box-shadow: none;
+        page-break-inside: avoid;
+    }
+}
+
+/* ============================
+   RESPONSIVE DESIGN
+   ============================ */
+@media (max-width: 1024px) {
+    .content-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .form-section {
+        border-right: none;
+        border-bottom: 2px solid #e0e0e0;
+        max-height: none;
+    }
+
+    .receipt-section {
+        max-height: none;
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .form-section,
+    .receipt-section {
+        padding: 25px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .receipt-actions {
+        flex-direction: column;
+    }
+
+    .receipt {
+        padding: 20px;
+    }
+
+    .receipt-item {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .receipt-item .value {
+        text-align: left;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .form-section,
+    .receipt-section {
+        padding: 15px;
+    }
+
+    .receipt-header h3 {
+        font-size: 1.5rem;
+    }
+
+    .amount-value {
+        font-size: 1.5rem;
+    }
+}
